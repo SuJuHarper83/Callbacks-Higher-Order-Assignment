@@ -20,3 +20,5 @@ Make sure to have the documentation for each of these open as you use them:
 4. Use the _DevTools_ of your **browser** to access the _Console_
 5. Work through each problem in `app.js` from the top of the file down
 6. Inspect your work using `console.log()` to log variables and viewing them in the _DevTools_ Console
+
+
