@@ -144,33 +144,167 @@ console.log("Vegetarian Foods: ", vegetarianFood);
 //2. Create a function that will return all dishes with the cuisine type of "Italian" and a serving size greater than 5.
 //Filter
 
+function findItalianFood() {
+  let results = dishes.filter(function (el) {
+    if (el.cuisine === "Italian" && el.servings > 5) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  return results;
+}
+
+let italianFood = findItalianFood();
+console.log("Italian Foods: ", italianFood);
+
+
 //3. Create a function that will return only dishes whose serving id number matches their serving count.
 //Filter
+
+function findServingIdDishes() {
+  let results = dishes.filter(function (el) {
+    if (el.id === el.servings) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  return results;
+}
+
+let servingIdDishes = findServingIdDishes();
+console.log("Count Foods: ", servingIdDishes);
+
 
 //4. Create a function that will return only dishes whose serving count is even.
 //Filter
 
+function findSevenServeDishes() {
+  let results = dishes.filter(function (el) {
+    if (el.servings === 7) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  return results;
+}
+
+let sevenServeDishes = findSevenServeDishes();
+console.log("Seven Serve Dishes: ", sevenServeDishes);
+
+
 //5. Create a function that will return dishes whose ingredients array is "tomato" and "cheese".
 //Filter
+
+function dishFinder(callback) {
+  let results = dishes.filter(function (el) {
+    if (callback(el.ingredients)) {
+      return true;
+    } 
+  });
+
+  return results;
+}
+
+function findTomatoCheeseDishes(ingredients){
+  if(ingredients.includes("tomato") && ingredients.includes("cheese")){
+    return true;
+  }
+}
+
+
+let dishFinderResults = dishFinder(findTomatoCheeseDishes);
+console.log("Tomato & Cheese Dishes:", dishFinderResults);
+
 
 //6a. Create a function that will return an array of only the names of the cuisine types. Ie ['Italian', 'Mexican', ...]
 //Map
 
+function listCuisineTypes() {
+  let cuisineTypes = dishes.map(function(el){
+    return `${el.cuisine}`
+  })
+
+console.log("Cuisine Types: ", cuisineTypes);
+
 // BONUS: (come back to this after finishing all)
 //6b. Use the filter method to eliminate duplicates, leaving only distinct values in the array
+
+
 
 //7. Create a function that will append the cuisine type to the start of the dish's name. Ie, "Italian Pizza"
 //Map
 
-//8. Create a function that will append the cuisine type to the start of the dish's name. Then, return only the Vegetarian dish objects. So this function should return objects 11-13 with their names changed to "Vegetarian Lasagna", "Vegetarian Falafel", "Vegetarian Chili"
+function newName() {
+  let newName = dishes.map(function(el){
+    return `${el.cuisine} ${el.name}`
+  })
+  return newName;
+}
+
+console.log(newName())
+
+
+//8. Create a function that will append the cuisine type to the start of the dish's name. 
+//Then, return only the Vegetarian dish objects. So this function should return objects 11-13 with their names changed to 
+//"Vegetarian Lasagna", "Vegetarian Falafel", "Vegetarian Chili"
 //Map, Filter
+
+function newName() {
+  let newName = dishes.map(function(el){
+    return `${el.cuisine} ${el.name}`
+  })
+  return newName;
+
+}
+
+function findNewVegName() {
+  if(newName.includes ("Vegetarian")){
+      return true;
+  }
+  return results;
+
+}
+
+let newVegName = findNewVegName();
+console.log("Vegetarian Foods: ", newVegName);
+
 
 // <<<<<<<<<<<<<<<<< BONUS <<<<<<<<<<<<<<<<<
 //9. Create a function that will return dishes whose ingredients array INCLUDES "chickpea".
 //Hint: You do not want to check the array's indexes to find out what the array INCLUDES.
 //Filter
 
+function findChickpeaDishes() {
+  let results = dishes.filter(function (el) {
+    if (el.ingredients.includes ("chickpea")) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  return results;
+}
+
+let chickpeaDishes = findChickpeaDishes();
+console.log("Chickpea Dishes: ", chickpeaDishes);
+
+
 //10. Create a function that will return the total serving count of all dishes.
 //Must use Reduce, not a loop.
 
-//11. Create a function that will return an array of any objects that do not share a cuisine type with any other objects.
+function getServingSum() {
+  let total = dishes.map(function(accumulator, el){
+    return accumulator + el.servings
+  })
+
+let results = numbers.reduce(total);
+console.log(results)
+  
+  //11. Create a function that will return an array of any objects that do not share a cuisine type with any other objects.
