@@ -228,8 +228,12 @@ console.log("Tomato & Cheese Dishes:", dishFinderResults);
 function listCuisineTypes() {
   let cuisineTypes = dishes.map(function(el){
     return `${el.cuisine}`
-  })
+  });
 
+  return cuisineTypes;
+}
+
+let cuisineTypes = listCuisineTypes()
 console.log("Cuisine Types: ", cuisineTypes);
 
 // BONUS: (come back to this after finishing all)
@@ -240,14 +244,15 @@ console.log("Cuisine Types: ", cuisineTypes);
 //7. Create a function that will append the cuisine type to the start of the dish's name. Ie, "Italian Pizza"
 //Map
 
-function newName() {
-  let newName = dishes.map(function(el){
+function findNewName() {
+  let newCuisine = dishes.filter(function(el){
     return `${el.cuisine} ${el.name}`
-  })
-  return newName;
+  });
+  return newCuisine;
 }
 
-console.log(newName())
+let newCuisine = findNewName()
+console.log(newCuisine)
 
 
 //8. Create a function that will append the cuisine type to the start of the dish's name. 
@@ -255,23 +260,23 @@ console.log(newName())
 //"Vegetarian Lasagna", "Vegetarian Falafel", "Vegetarian Chili"
 //Map, Filter
 
-function newName() {
-  let newName = dishes.map(function(el){
-    return `${el.cuisine} ${el.name}`
-  })
-  return newName;
-
-}
-
-function findNewVegName() {
-  if(newName.includes ("Vegetarian")){
-      return true;
-  }
+function newName(callback) {
+  let results = dishes.filter(function(el){
+    if (callback(el.cuisine)) {
+      return `${el.cuisine} ${el.name}`
+    }
+  });
   return results;
 
 }
 
-let newVegName = findNewVegName();
+function findNewVegName(cuisine) {
+  if(cuisine.includes ("Vegetarian")){
+      return true;
+  }
+}
+
+let newVegName = newName(findNewVegName);
 console.log("Vegetarian Foods: ", newVegName);
 
 
@@ -300,11 +305,14 @@ console.log("Chickpea Dishes: ", chickpeaDishes);
 //Must use Reduce, not a loop.
 
 function getServingSum() {
-  let total = dishes.map(function(accumulator, el){
-    return accumulator + el.servings
-  })
+  let results = dishes.reduce(function(accumulator, el){
+    if(total = accumulator + el.servings);
+  });
 
-let results = numbers.reduce(total);
-console.log(results)
+  return results;
+}
+
+let servingSum = getServingSum();
+console.log("Serving Sum: ", servingSum);
   
   //11. Create a function that will return an array of any objects that do not share a cuisine type with any other objects.
